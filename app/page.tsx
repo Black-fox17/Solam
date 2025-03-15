@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent } from "@/components/ui/card"
+import  AzureMap from "@/components/azuremap"
 import {
   Microscope,
   FlaskRoundIcon as Flask,
@@ -23,7 +24,7 @@ export default function Home() {
       <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-16 items-center space-x-4 sm:justify-between sm:space-x-0">
           <div className="flex gap-2 items-center text-primary">
-            <Microscope className="h-6 w-6" />
+          <Image src="/lab.png" width={35} height={35} alt="Icon Lab" />
             <span className="font-bold text-xl">Solam Diagnostic Centre</span>
           </div>
           <div className="flex flex-1 items-center justify-end space-x-4">
@@ -51,7 +52,7 @@ export default function Home() {
         <section className="relative">
           <div className="absolute inset-0 z-0">
             <Image
-              src="/placeholder.svg?height=800&width=1920"
+              src="/diagnostic_lab.png"
               alt="Medical laboratory"
               fill
               className="object-cover brightness-[0.4]"
@@ -69,7 +70,9 @@ export default function Home() {
                   providers make informed decisions.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
+                  <a href = "#services">
                   <Button size="lg">Our Services</Button>
+                  </a>
                   <Button
                     size="lg"
                     variant="outline"
@@ -84,7 +87,7 @@ export default function Home() {
                 <div className="relative overflow-hidden rounded-lg border bg-background p-8">
                   <div className="flex justify-center mb-4">
                     <Image
-                      src="/placeholder.svg?height=150&width=150"
+                      src="https://com.ui.edu.ng/images/Faculties/Basic_Medical_Sciences/Pathology/musthapha_ajani.jpg"
                       alt="Dr. Ajani"
                       width={150}
                       height={150}
@@ -153,7 +156,7 @@ export default function Home() {
             <div className="grid gap-12 md:grid-cols-2 items-center">
               <div>
                 <Image
-                  src="/placeholder.svg?height=600&width=600"
+                  src="/lab2.jpg"
                   alt="Medical laboratory"
                   width={600}
                   height={600}
@@ -175,7 +178,7 @@ export default function Home() {
 
                 <div className="grid grid-cols-2 gap-6 pt-6">
                   <StatCard number="5,000+" text="Accurate Diagnoses" />
-                  <StatCard number="15+" text="Years Experience" />
+                  <StatCard number="9+" text="Years Experience" />
                   <StatCard number="12" text="Specialists" />
                   <StatCard number="24/7" text="Support" />
                 </div>
@@ -229,15 +232,23 @@ export default function Home() {
                   </div>
                   <div className="flex items-center gap-3">
                     <Phone className="h-5 w-5 text-primary" />
-                    <p>+234 123 456 7890</p>
+                    <p>+234 812 827 2339</p>
                   </div>
                   <div className="flex items-center gap-3">
                     <Mail className="h-5 w-5 text-primary" />
-                    <p>info@solamdiagnostic.com</p>
+                    <p>solamdiagnostics@gmail.com</p>
                   </div>
                 </div>
 
                 <div className="aspect-video w-full rounded-lg overflow-hidden border mt-6">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.574323132975!2d3.897365009529629!3d7.401499312309411!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x10398d5dc7efc903%3A0x5d241490ff04fca9!2sInstitute%20for%20Advanced%20Medical%20Research%20and%20Training%20-%20IAMRAT!5e0!3m2!1sen!2sng!4v1742031875450!5m2!1sen!2sng"
+                  width="600"
+                  height="450"
+                  style={{ border: 0 }}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                ></iframe>
                   {/* This would be replaced with an actual Google Maps embed */}
                   <div className="w-full h-full bg-muted flex items-center justify-center">
                     <p className="text-muted-foreground">Google Maps Integration</p>
@@ -393,7 +404,7 @@ export default function Home() {
                 </li>
                 <li className="flex items-center gap-2">
                   <Mail className="h-4 w-4 text-primary" />
-                  <span>info@solamdiagnostic.com</span>
+                  <span>solamdiagnostics@gmail.com</span>
                 </li>
               </ul>
             </div>
