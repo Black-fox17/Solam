@@ -400,7 +400,7 @@ export default function Home() {
                 </li>
                 <li className="flex items-center gap-2">
                   <Phone className="h-4 w-4 text-primary" />
-                  <span>+234 123 456 7890</span>
+                  <span>+234 812 827 2339</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <Mail className="h-4 w-4 text-primary" />
