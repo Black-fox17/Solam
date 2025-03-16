@@ -1,5 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -18,6 +19,70 @@ import {
 } from "lucide-react"
 
 export default function Home() {
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    service: "",
+    message: "",
+  });
+  const [formStatus, setFormStatus] = useState({
+    message: "",
+    isError: false,
+    isSubmitting: false,
+  });
+
+  const handleInputChange = (e) => {
+    const { id, value } = e.target;
+    setFormData({
+      ...formData,
+      [id.replace("-", "")]: value,
+    });
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setFormStatus({ ...formStatus, isSubmitting: true });
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setFormStatus({
+          message: "Thank you! Your request has been submitted successfully.",
+          isError: false,
+          isSubmitting: false,
+        });
+        // Reset form
+        setFormData({
+          firstName: "",
+          lastName: "",
+          email: "",
+          phone: "",
+          service: "",
+          message: "",
+        });
+      } else {
+        setFormStatus({
+          message: "Something went wrong. Please try again later.",
+          isError: true,
+          isSubmitting: false,
+        });
+      }
+    } catch (error) {
+      setFormStatus({
+        message: "An error occurred. Please try again later.",
+        isError: true,
+        isSubmitting: false,
+      });
+    }
+  };
   return (
     <div className="flex min-h-screen flex-col">
       {/* Header */}
