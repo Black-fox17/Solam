@@ -114,7 +114,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <link rel="icon" href="/lab.png" />
+        <link rel="icon" href="/med.svg" />
       </Head>
       <div className="flex min-h-screen flex-col">
         {/* Header */}
