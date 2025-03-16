@@ -22,7 +22,7 @@ import {
 export default function Home() {
   const [formData, setFormData] = useState({
     name: "",
-    email: "",
+    email: "",  
     phone: "",
     service: "",
     message: "",
