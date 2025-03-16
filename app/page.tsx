@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image"
 import Link from "next/link"
 import { useState } from "react"
@@ -35,16 +36,29 @@ export default function Home() {
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
+
+    // Map hyphenated ID to correct formData keys
+    const fieldMapping = {
+      "first-name": "firstName",
+      "last-name": "lastName",
+      email: "email",
+      phone: "phone",
+      service: "service",
+      message: "message",
+    };
+
     setFormData({
       ...formData,
-      [id.replace("-", "")]: value,
+      [fieldMapping[id]]: value, // Use mapped key
     });
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setFormStatus({ ...formStatus, isSubmitting: true });
 
     try {
+      console.log(formData);
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
@@ -323,39 +337,44 @@ export default function Home() {
 
               <div className="space-y-6">
                 <h3 className="text-2xl font-bold">Book a Consultation</h3>
-                <form className="space-y-4">
+                <form className="space-y-4" onSubmit={handleSubmit}>
                   <div className="grid gap-4 sm:grid-cols-2">
                     <div className="space-y-2">
                       <label htmlFor="first-name" className="text-sm font-medium">
                         First name
                       </label>
-                      <Input id="first-name" placeholder="Enter your first name" />
+                      <Input id="first-name" value={formData.firstName} onChange={handleInputChange} placeholder="Enter your first name" />
                     </div>
                     <div className="space-y-2">
                       <label htmlFor="last-name" className="text-sm font-medium">
                         Last name
                       </label>
-                      <Input id="last-name" placeholder="Enter your last name" />
+                      <Input id="last-name" value={formData.lastName} onChange={handleInputChange} placeholder="Enter your last name" />
                     </div>
                   </div>
+
                   <div className="space-y-2">
                     <label htmlFor="email" className="text-sm font-medium">
                       Email
                     </label>
-                    <Input id="email" type="email" placeholder="Enter your email" />
+                    <Input id="email" type="email" value={formData.email} onChange={handleInputChange} placeholder="Enter your email" />
                   </div>
+
                   <div className="space-y-2">
                     <label htmlFor="phone" className="text-sm font-medium">
                       Phone
                     </label>
-                    <Input id="phone" placeholder="Enter your phone number" />
+                    <Input id="phone" value={formData.phone} onChange={handleInputChange} placeholder="Enter your phone number" />
                   </div>
+
                   <div className="space-y-2">
                     <label htmlFor="service" className="text-sm font-medium">
                       Service
                     </label>
                     <select
                       id="service"
+                      value={formData.service}
+                      onChange={handleInputChange}
                       className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                     >
                       <option value="">Select a service</option>
@@ -367,14 +386,20 @@ export default function Home() {
                       <option value="consultation">Personal Consultation</option>
                     </select>
                   </div>
+
                   <div className="space-y-2">
                     <label htmlFor="message" className="text-sm font-medium">
                       Message
                     </label>
-                    <Textarea id="message" placeholder="Enter your message" rows={4} />
+                    <Textarea id="message" value={formData.message} onChange={handleInputChange} placeholder="Enter your message" rows={4} />
                   </div>
-                  <Button type="submit" className="w-full">
-                    Submit Request
+
+                  {formStatus.message && (
+                    <p className={formStatus.isError ? "text-red-500" : "text-green-500"}>{formStatus.message}</p>
+                  )}
+
+                  <Button type="submit" className="w-full" disabled={formStatus.isSubmitting}>
+                    {formStatus.isSubmitting ? "Submitting..." : "Submit Request"}
                   </Button>
                 </form>
               </div>
