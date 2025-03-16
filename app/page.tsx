@@ -21,8 +21,7 @@ import {
 
 export default function Home() {
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
+    name: "",
     email: "",
     phone: "",
     service: "",
@@ -39,8 +38,7 @@ export default function Home() {
 
     // Map hyphenated ID to correct formData keys
     const fieldMapping = {
-      "first-name": "firstName",
-      "last-name": "lastName",
+      name: "name",
       email: "email",
       phone: "phone",
       service: "service",
@@ -59,15 +57,18 @@ export default function Home() {
 
     try {
       console.log(formData);
-      const response = await fetch('/api/contact', {
+      const response = await fetch('http://127.0.0.1:8000/api/v1/order/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          service: formData.service.toUpperCase(), // Convert to uppercase if backend expects this format
+        }),
       });
 
-      if (response.ok) {
+      if (response.status === 201) {
         setFormStatus({
           message: "Thank you! Your request has been submitted successfully.",
           isError: false,
@@ -75,8 +76,7 @@ export default function Home() {
         });
         // Reset form
         setFormData({
-          firstName: "",
-          lastName: "",
+          name: "",
           email: "",
           phone: "",
           service: "",
@@ -338,21 +338,12 @@ export default function Home() {
               <div className="space-y-6">
                 <h3 className="text-2xl font-bold">Book a Consultation</h3>
                 <form className="space-y-4" onSubmit={handleSubmit}>
-                  <div className="grid gap-4 sm:grid-cols-2">
                     <div className="space-y-2">
                       <label htmlFor="first-name" className="text-sm font-medium">
-                        First name
+                        Name
                       </label>
-                      <Input id="first-name" value={formData.firstName} onChange={handleInputChange} placeholder="Enter your first name" />
+                      <Input id="name" value={formData.name} onChange={handleInputChange} placeholder="Enter your name" />
                     </div>
-                    <div className="space-y-2">
-                      <label htmlFor="last-name" className="text-sm font-medium">
-                        Last name
-                      </label>
-                      <Input id="last-name" value={formData.lastName} onChange={handleInputChange} placeholder="Enter your last name" />
-                    </div>
-                  </div>
-
                   <div className="space-y-2">
                     <label htmlFor="email" className="text-sm font-medium">
                       Email
