@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image"
 import Link from "next/link"
-import { useState } from "react"
+import { useState,useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -50,6 +50,19 @@ export default function Home() {
       [fieldMapping[id]]: value, // Use mapped key
     });
   };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('https://solam-api-1.onrender.com/');
+        const data = await response.json();
+        console.log(data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -57,7 +70,7 @@ export default function Home() {
 
     try {
       console.log(formData);
-      const response = await fetch('http://127.0.0.1:8000/api/v1/order/create', {
+      const response = await fetch('https://solam-api-1.onrender.com/api/v1/order/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
