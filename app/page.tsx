@@ -122,7 +122,7 @@ export default function Home() {
           <div className="container flex h-16 items-center space-x-4 sm:justify-between sm:space-x-0">
             <div className="flex gap-2 items-center text-primary">
             <Image src="/lab.png" width={35} height={35} alt="Icon Lab" />
-              <span className="font-bold text-xl">Solam Diagnostic Centre</span>
+              <span className="font-bold text-xl">Solam Diagnostics and Clinics</span>
             </div>
             <div className="flex flex-1 items-center justify-end space-x-4">
               <nav className="flex items-center space-x-2 md:space-x-6">
@@ -163,7 +163,7 @@ export default function Home() {
                     Advanced Diagnostics for Better Healthcare
                   </h1>
                   <p className="max-w-[600px] text-lg text-gray-200">
-                    Solam Diagnostic Centre provides accurate, reliable, and timely diagnostic services to help healthcare
+                    Solam Diagnostics and Clinics provides accurate, reliable, and timely diagnostic services to help healthcare
                     providers make informed decisions.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4">
@@ -261,9 +261,9 @@ export default function Home() {
                   />
                 </div>
                 <div className="space-y-6">
-                  <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">About Solam Diagnostic Centre</h2>
+                  <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">About Solam Diagnostics and Clinics</h2>
                   <p className="text-lg text-muted-foreground">
-                    Located at University College Hospital, Ibadan, Solam Diagnostic Centre is committed to providing
+                    Located at University College Hospital, Ibadan, Solam Diagnostics and Clinics is committed to providing
                     accurate, reliable, and timely diagnostic services to help healthcare providers make informed
                     decisions.
                   </p>
@@ -509,7 +509,7 @@ export default function Home() {
               </div>
             </div>
             <div className="mt-8 pt-8 border-t text-center text-sm text-muted-foreground">
-              <p>&copy; {new Date().getFullYear()} Solam Diagnostic Centre. All rights reserved.</p>
+              <p>&copy; {new Date().getFullYear()} Solam Diagnostics and Clinics. All rights reserved.</p>
             </div>
           </div>
         </footer>
